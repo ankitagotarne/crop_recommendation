@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <title>Crop Recommendation</title>
+  </head>
+  <body class="bg-secondary" style="background-image:url('https://mdbootstrap.com/img/new/fluid/nature/012.jpg');
+            height: 100vh">
+    <table border="0" width="15%" bgcolor="Gray" style="margin-left: 1150px">
+    </table>
+    <div class="container">
+      <div class="row">
+        <div class="card" style="width: 60%; height: 100%;  margin-top: 60px; margin-left: 200px;">
+          <div class="card-header" style="text-align: center;">
+            <h1 style="font-family: times">Welcome to Crop Recommendation</h1>
+          </div>
+          <div class="card-body">
+            <form method="post" accept-charset="utf-8">
+
+              <div class="row">
+
+                <div class="col-md-6 form-group" style="text-align: center;"><br>
+                  <label><b>Nitrogen of soil</b></label>
+                  <input type="text" class="form-control" id="N" name="N" placeholder="Enter Nitrogen of soil">               
+                </div>
+
+                <div class="col-md-6 form-group" style="text-align: center;"><br>
+                  <label><b>Phosphrous of soil</b></label>
+                  <input type="text" class="form-control" id="P" name="P" placeholder="Enter Phosphrous of soil">               
+                </div>
+                
+                <div class="col-md-6 form-group" style="text-align: center;"><br>
+                  <label><b>Potassium of soil</b></label>
+                  <input type="text" class="form-control" id="K" name="K" placeholder="Enter Potassium of soil">               
+                </div>
+
+                <div class="col-md-6 form-group" style="text-align: center;"><br>
+                  <label><b>Enter Temperature</b></label>
+                  <input type="text" class="form-control" id="temperature" name="temperature" placeholder="Enter temperature">               
+                </div>
+
+                <div class="col-md-6 form-group" style="text-align: center;"><br>
+                  <label><b>Enter humidity</b></label>
+                  <input type="text" class="form-control" id="humidity" name="humidity" placeholder="Enter humidity">               
+                </div>
+
+                <div class="col-md-6 form-group" style="text-align: center;"><br>
+                  <label><b>Enter ph</b></label>
+                  <input type="text" class="form-control" id="ph" name="ph" placeholder="Enter ph">               
+                </div>
+
+                <center><div class="col-md-6 form-group" style="text-align: center;"><br>
+                  <label><b>Enter rainfall</b></label>
+                  <input type="text" class="form-control" id="rainfall" name="rainfall" placeholder="Enter rainfall"></div>
+                </center>
+
+                <div class="col-md-12 form-group" ><br>
+                  <button  class="btn btn-primary form-control" onclick="send_data()" style="background-color: #4CAF50">Crop Recommended</button>
+                  
+                </div>
+
+              </div>
+              
+            </form>
+            <br>
+            <div class="col-md-12" style="text-align: center;">
+              <h3><span id="prediction"></span></h3>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <script>
+      function form_handler(event) {
+
+        event.preventDefault(); // Don't submit the form normally
+      }
+      function send_data()
+      {
+
+        document.querySelector('form').addEventListener("submit",form_handler);
+
+        var fd=new FormData(document.querySelector('form'));
+
+        var xhr= new XMLHttpRequest();
+
+        xhr.open('POST','/predict',true);
+        document.getElementById('prediction').innerHTML = "Wait for Recommendation!....."
+        xhr.onreadystatechange = function(){
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                 document.getElementById('prediction').innerHTML="Recommended Crop is :  "+xhr.responseText;
+            }
+        };
+        xhr.onload = function(){};  
+        xhr.send(fd);
+
+      }
+      
+
+    </script>
+    
+
+
+
+
+    
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+  
+  </body>
+</html>
+
