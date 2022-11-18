@@ -86,7 +86,7 @@ def predict():
         prediction = "Sorry but We can not predict"
     return prediction
 
-
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
