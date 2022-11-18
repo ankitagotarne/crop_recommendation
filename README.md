@@ -7,4 +7,7 @@
 4. In the crop recommendation application, the user can provide the soil data from their side and the application will predict which crop should the user grow.
 
 ## Demo
+
+https://cropprediction1234.herokuapp.com/
+
 ![Animation](https://user-images.githubusercontent.com/87277320/140741218-c5e01530-2c49-4295-acae-41292aa8c80d.gif)
